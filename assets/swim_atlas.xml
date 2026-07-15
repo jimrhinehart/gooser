@@ -1,0 +1,6 @@
+<TextureAtlas imagePath="goose_swimming.png">
+   <SubTexture name="swim_u" x="0" y="0" width="64" height="64"/>
+   <SubTexture name="swim_d" x="65" y="0" width="64" height="64"/>
+   <SubTexture name="swim_l" x="129" y="0" width="64" height="64"/>
+   <SubTexture name="swim_r" x="193" y="0" width="64" height="64"/>
+</TextureAtlas>
