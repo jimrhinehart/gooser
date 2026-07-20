@@ -6,13 +6,13 @@ await loadFont('assets/LT.ttf');
 let bg = await loadImage('assets/background.png');
 let poop = await loadImage('assets/poop.png');
 const levels = await loadJSON('levels.json');
-
 let gameState = initGame;
 let cars = new Group();
 let crocs = new Group();
 let poops = new Group();
 let goose;
 let isSwimming;
+let currentLevel = 1;
 
 function initGame() {
 
@@ -23,7 +23,8 @@ function initGame() {
     cars.scale = 2;
     cars.physics = 'kinematic';
 
-    levels.cars.forEach(addVehicles);
+
+    levels.level[currentLevel].cars.forEach(addVehicles);
 
     function addVehicles(vehicle) {
         let temp = new cars.Sprite(vehicle.x, (vehicle.y * 32) - halfHeight, 32, 32);
@@ -42,7 +43,7 @@ function initGame() {
     crocs.scale = 2;
     // crocs.debug = true;
 
-    levels.crocs.forEach(addFloaty);
+    levels.level[currentLevel].crocs.forEach(addFloaty);
 
     function addFloaty(floaty) {
         let temp = new crocs.Sprite(floaty.x, (floaty.y * 32) - halfHeight, 98, 32);

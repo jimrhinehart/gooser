@@ -1,68 +1,144 @@
-
-
 {
-	"cars": [
-		{
-			"image":"assets/purple.png",
-			"x":0,
-			"y":16,
-			"speed":1.5,
-			"direction":180,
-			"w": 16,
- 			"h": 16,
-			"scale": 2,
-			"physics": "kinematic"
+	"level": [
+    	{
+	    	"cars": [
+				{
+					"image":"assets/purple.png",
+					"x":0,
+					"y":16,
+					"speed":1.5,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"
+				},
+				{
+					"image":"assets/purple.png",
+					"x":40,
+					"y":16,
+					"speed":1.5,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"		
+				},
+				{
+					"image":"assets/yellow.png",
+					"x":60,
+					"y":12,
+					"speed":2.0,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"	
+				}
+			],	
+			"crocs": [
+				{
+					"image":"assets/croc_r.png",
+					"x": -40,
+					"y": 7,
+					"speed": 0.5,
+					"direction": 0,
+					"frameDelay": 40
+				},
+				{
+					"image":"assets/croc_l.png",
+					"x": -40,
+					"y": 4,
+					"speed": 0.5,
+					"direction": 180,
+					"frameDelay": 40
+				}
+			]
 		},
-
-		{
-			"image":"assets/purple.png",
-			"x":40,
-			"y":16,
-			"speed":1.5,
-			"direction":180,
-			"w": 16,
- 			"h": 16,
-			"scale": 2,
-			"physics": "kinematic"		
-		},
-
-		{
-			"image":"assets/yellow.png",
-			"x":60,
-			"y":12,
-			"speed":2.0,
-			"direction":180,
-			"w": 16,
- 			"h": 16,
-			"scale": 2,
-			"physics": "kinematic"	
+ 	 	{
+			"cars": [
+				{
+					"image":"assets/purple.png",
+					"x":0,
+					"y":15,
+					"speed":1.5,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"
+				},
+				{
+					"image":"assets/purple.png",
+					"x":40,
+					"y":15,
+					"speed":1.5,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"		
+				},
+				{
+					"image":"assets/purple.png",
+					"x":80,
+					"y":15,
+					"speed":1.5,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"		
+				},
+				{
+					"image":"assets/yellow.png",
+					"x":60,
+					"y":12,
+					"speed":2.0,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"	
+				},
+				{
+					"image":"assets/yellow.png",
+					"x":20,
+					"y":12,
+					"speed":2.0,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"	
+				}				
+			],	
+			"crocs": [
+				{
+					"image":"assets/croc_r.png",
+					"x": -40,
+					"y": 7,
+					"speed": 0.5,
+					"direction": 0,
+					"frameDelay": 40
+				},
+				{
+					"image":"assets/croc_l.png",
+					"x": -40,
+					"y": 3,
+					"speed": 0.5,
+					"direction": 180,
+					"frameDelay": 40
+				},
+				{
+					"image":"assets/croc_l.png",
+					"x": 40,
+					"y": 5,
+					"speed": 0.5,
+					"direction": 180,
+					"frameDelay": 40
+				}				
+			]
 		}
-	],	
-
-	"crocs": [
-		{
-			"image":"assets/croc_r.png",
-			"x": -40,
-			"y": 7,
-			"speed": 0.5,
-			"direction": 0,
-			"frameDelay": 40
-		},
-		{
-			"image":"assets/croc_l.png",
-			"x": -40,
-			"y": 4,
-			"speed": 0.5,
-			"direction": 180,
-			"frameDelay": 40
-		}
-	]
+	]	
 }
-
-
-
-
-
-
-
-
