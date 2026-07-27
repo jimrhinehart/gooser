@@ -6,15 +6,18 @@ await loadFont('assets/LT.ttf');
 let bg = await loadImage('assets/background.png');
 let poop = await loadImage('assets/poop.png');
 const levels = await loadJSON('levels.json');
-let gameState = initGame;
+let gameState = startScreen;
 let cars = new Group();
 let crocs = new Group();
 let poops = new Group();
+let poopFlag = false;
 let goose;
 let isSwimming;
-let currentLevel = 1;
+let currentLevel = -1;
 
 function initGame() {
+
+    currentLevel++;
 
 /*
         Car group - road things
@@ -22,7 +25,6 @@ function initGame() {
 
     cars.scale = 2;
     cars.physics = 'kinematic';
-
 
     levels.level[currentLevel].cars.forEach(addVehicles);
 
@@ -64,7 +66,6 @@ function initGame() {
 /*
         Goose stuff!
 */
-
     goose = new Sprite(0, halfHeight - 30, 64, 64);
     goose.w = 20;
     goose.h = 28;
@@ -88,10 +89,11 @@ function initGame() {
         death:  {row: 8, frames: 8} 
     });
 
-    // goose.debug = true;
+        // goose.debug = true;
 
     goose.changeAni('walk_r');
-    gameState = startScreen;
+    console.log(currentLevel);
+    gameState = runGame;
 }
 
 q5.draw = function () {
@@ -106,6 +108,15 @@ function runGame() {
     goose.speed = 0.75;
     goose.visible = true;
 
+    cars.forEach((car) => {
+        car.visible = true;
+    });
+
+    crocs.forEach((croc) => {
+        croc.visible = true;
+    });
+
+
     if (kb.presses('up')) goose.direction = ('up');
     if (kb.presses('down')) goose.direction = ('down');
     if (kb.presses('left')) goose.direction = ('left');
@@ -115,7 +126,12 @@ function runGame() {
 
     if (kb.presses(' ')) {
         let temp = new poops.Sprite(goose.x, goose.y+20);
-        temp.img = poop; 
+        temp.img = poop;
+        temp.layer = 1;
+        if (goose.y+20 < -halfHeight + 64) {
+            console.log("Top Poop!");
+            poopFlag = true;
+        }
     } 
 
     if (goose.y < -45 && goose.y > -275) isSwimming = true;
@@ -158,6 +174,9 @@ function runGame() {
 
     if (goose.overlaps(crocs)) gameState = splat;
 
+    if (goose.y > halfHeight - 32 && poopFlag == true) {
+        gameState = levelCleared;
+    }
 }
 
 function splat() {
@@ -176,30 +195,44 @@ function splat() {
     }
 }
 
-
-
 function startScreen() {
     clear();
     background(bg);
     fill('white');
+    textAlign(CENTER);
     textSize(64);
-    text('Gooser!', -98, 24);
+    text('Gooser!', 0, -100);
     textSize(48);
-    text('press space to begin', -210, 80);
+    text('Arrow keys to move', 0, -50);
+    text('Space bar to poop', 0, 0);
+    textSize(24);
+    text('Get to the top, poop, and get back!', 0, 100);
+    text('press space to begin', 0, 150);
+
     if (kb.presses(' ')) {
-        goose.speed = 0.75;
-        goose.visible = true;
-
-        cars.forEach((car) => {
-            car.visible = true;
-        });
-
-        crocs.forEach((croc) => {
-            croc.visible = true;
-        });
-
-        gameState = runGame;
+        gameState = initGame;
     }
 }
 
-
+function levelCleared() {
+    clear();
+    background(bg);
+    fill('white');
+    textAlign(CENTER);
+    textSize(64);
+    text('Level cleared!', 0, -100);
+    textSize(48);
+    text('Space to continue...', 0, -50);
+    cars.deleteAll();
+    crocs.deleteAll();
+    poops.deleteAll();
+    goose.remove;
+    if (kb.presses(' ')) {
+        clear();
+        gameState = initGame;
+   }
+}    
+        
+        
+        
+        
