@@ -11,10 +11,15 @@ let musicStartScreen = await loadAudio('assets/audio/gameStart.flac');
 let musicLevelCleared = await loadAudio('assets/audio/levelComplete.flac');
 let levelMusic = [];
 let isPlaying = false;
+let poopPlayed = false;
 levelMusic[0] = await loadAudio('assets/audio/level1.flac');
 levelMusic[1] = await loadAudio('assets/audio/level2.flac');
 levelMusic[2] = await loadAudio('assets/audio/level3.flac');
 levelMusic[3] = await loadAudio('assets/audio/level4.flac');
+let dieRoad = await loadSound('assets/audio/dieRoad.mp3');
+let dieWater = await loadSound('assets/audio/dieWater.mp3');
+let raceCar = await loadSound('assets/audio/raceCar.mp3');
+let topPoop = await loadSound('assets/audio/topPoop.mp3');
 
 let gameState = startScreen;
 
@@ -117,6 +122,10 @@ function runGame() {
         temp.layer = 1;
         if (goose.y+20 < -halfHeight + 64) {
             poopFlag = true;
+            if (poopPlayed == false) {
+                topPoop.play();
+                poopPlayed = true;
+            }
         }
     } 
 
@@ -214,6 +223,7 @@ function levelCleared() {
     cars.deleteAll();
     crocs.deleteAll();
     poops.deleteAll();
+    poopPlayed = false;
     if (isPlaying == false) {
         musicLevelCleared.play();
         isPlaying = true;
