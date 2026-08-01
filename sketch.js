@@ -6,6 +6,16 @@ await loadFont('assets/LT.ttf');
 let bg = await loadImage('assets/background.png');
 let poop = await loadImage('assets/poop.png');
 const levels = await loadJSON('levels.json');
+
+let musicStartScreen = await loadAudio('assets/audio/gameStart.flac');
+let musicLevelCleared = await loadAudio('assets/audio/levelComplete.flac');
+let levelMusic = [];
+let currentMusic;
+levelMusic[0] = await loadAudio('assets/audio/level1.flac');
+levelMusic[1] = await loadAudio('assets/audio/level2.flac');
+levelMusic[2] = await loadAudio('assets/audio/level3.flac');
+levelMusic[3] = await loadAudio('assets/audio/level4.flac');
+
 let gameState = startScreen;
 
 let cars = new Group();
@@ -50,10 +60,6 @@ q5.draw = function () {
 
 function initGame() {
 
-    currentLevel++;
-
-    console.log(currentLevel);
-
 /*
         Car group - road things
 */
@@ -82,7 +88,6 @@ function initGame() {
         temp.ani.frameDelay = floaty.frameDelay;
         temp.w = 94;
         temp.h = 24;
-        // temp.visible = false;
     };
 
     gameState = runGame;
@@ -93,6 +98,8 @@ function runGame() {
     clear();
     background(bg);
 
+    currentMusic = levelMusic[currentLevel];
+    currentMusic.play();
 
     goose.speed = 0.75;
     goose.visible = true;
@@ -164,11 +171,13 @@ function runGame() {
     if (goose.overlaps(crocs)) gameState = splat;
 
     if (goose.y > halfHeight - 32 && poopFlag == true) {
+        currentMusic.pause();
         gameState = levelCleared;
     }
 }
 
 function splat() {
+    currentMusic.pause();
     clear();
     background(bg);
     cars.deleteAll();
@@ -197,8 +206,11 @@ function startScreen() {
     textSize(24);
     text('Get to the top, poop, and get back!', 0, 100);
     text('press space to begin', 0, 150);
+    currentMusic = musicStartScreen;
+    currentMusic.play();
 
     if (kb.presses(' ')) {
+        currentMusic.pause();
         gameState = initGoose;
     }
 }
@@ -213,8 +225,9 @@ function levelCleared() {
     cars.deleteAll();
     crocs.deleteAll();
     poops.deleteAll();
-    // goose.remove;
-    gameState = initGame;
+    currentMusic = musicLevelCleared;
+    currentMusic.play();
+    gameState = initGoose;
 }    
 
 function initGoose() {
@@ -228,7 +241,11 @@ function initGoose() {
     goose.physics = 'kinematic';
     goose.layer = 999;
 
-    let isSwimming = false;
+    isSwimming = false;
+    poopFlag = false;
+    currentLevel++;
+    goose.ani.frame = 0;
+
     gameState = initGame;
 }
 
