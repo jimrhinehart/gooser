@@ -10,7 +10,7 @@ const levels = await loadJSON('levels.json');
 let musicStartScreen = await loadAudio('assets/audio/gameStart.flac');
 let musicLevelCleared = await loadAudio('assets/audio/levelComplete.flac');
 let levelMusic = [];
-let currentMusic;
+let isPlaying = false;
 levelMusic[0] = await loadAudio('assets/audio/level1.flac');
 levelMusic[1] = await loadAudio('assets/audio/level2.flac');
 levelMusic[2] = await loadAudio('assets/audio/level3.flac');
@@ -98,21 +98,11 @@ function runGame() {
     clear();
     background(bg);
 
-    currentMusic = levelMusic[currentLevel];
-    currentMusic.play();
+    levelMusic[currentLevel].play();
 
     goose.speed = 0.75;
     goose.visible = true;
     goose.changeAni('walk_r');
-
-    // cars.forEach((car) => {
-    //     car.visible = true;
-    // });
-
-    // crocs.forEach((croc) => {
-    //     croc.visible = true;
-    // });
-
 
     if (kb.presses('up')) goose.direction = ('up');
     if (kb.presses('down')) goose.direction = ('down');
@@ -171,7 +161,7 @@ function runGame() {
     if (goose.overlaps(crocs)) gameState = splat;
 
     if (goose.y > halfHeight - 32 && poopFlag == true) {
-        currentMusic.pause();
+        levelMusic[currentLevel].pause();
         gameState = levelCleared;
     }
 }
@@ -206,11 +196,10 @@ function startScreen() {
     textSize(24);
     text('Get to the top, poop, and get back!', 0, 100);
     text('press space to begin', 0, 150);
-    currentMusic = musicStartScreen;
-    currentMusic.play();
+    musicStartScreen.play();
 
     if (kb.presses(' ')) {
-        currentMusic.pause();
+        musicStartScreen.pause();
         gameState = initGoose;
     }
 }
@@ -225,9 +214,12 @@ function levelCleared() {
     cars.deleteAll();
     crocs.deleteAll();
     poops.deleteAll();
-    currentMusic = musicLevelCleared;
-    currentMusic.play();
-    gameState = initGoose;
+    if (isPlaying == false) {
+        musicLevelCleared.play();
+        isPlaying = true;
+    }
+    // console.log(musicLevelCleared.ended);
+    if (musicLevelCleared.ended) gameState = initGoose;
 }    
 
 function initGoose() {
@@ -242,6 +234,7 @@ function initGoose() {
     goose.layer = 999;
 
     isSwimming = false;
+    isPlaying = false;
     poopFlag = false;
     currentLevel++;
     goose.ani.frame = 0;
