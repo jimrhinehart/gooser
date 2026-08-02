@@ -9,13 +9,16 @@ const levels = await loadJSON('levels.json');
 
 let musicStartScreen = await loadAudio('assets/audio/gameStart.flac');
 let musicLevelCleared = await loadAudio('assets/audio/levelComplete.flac');
+let splatMusic = await loadAudio('assets/audio/splat.flac');
 let levelMusic = [];
 let isPlaying = false;
 let poopPlayed = false;
+
 levelMusic[0] = await loadAudio('assets/audio/level1.flac');
 levelMusic[1] = await loadAudio('assets/audio/level2.flac');
 levelMusic[2] = await loadAudio('assets/audio/level3.flac');
 levelMusic[3] = await loadAudio('assets/audio/level4.flac');
+
 let dieRoad = await loadSound('assets/audio/dieRoad.flac');
 let dieWater = await loadSound('assets/audio/dieWater.flac');
 let raceCar = await loadSound('assets/audio/raceCar.flac');
@@ -57,7 +60,7 @@ let isSwimming = false;
 
 goose.visible = false;
 
-let currentLevel = -1;
+let currentLevel = 0;
 
 q5.draw = function () {
     gameState();
@@ -167,15 +170,15 @@ function runGame() {
 
     if (goose.overlaps(cars)) {
         levelMusic[currentLevel].pause();
-            dieRoad.play();
-
+        // dieRoad.play();
+        splatMusic.play();
         gameState = splat;
     }
 
     if (goose.overlaps(crocs)) {
         levelMusic[currentLevel].pause();
-            dieRoad.play();
-
+        // dieWater.play();
+        splatMusic.play();
         gameState = splat;
     }
 
