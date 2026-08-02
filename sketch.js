@@ -16,10 +16,10 @@ levelMusic[0] = await loadAudio('assets/audio/level1.flac');
 levelMusic[1] = await loadAudio('assets/audio/level2.flac');
 levelMusic[2] = await loadAudio('assets/audio/level3.flac');
 levelMusic[3] = await loadAudio('assets/audio/level4.flac');
-let dieRoad = await loadSound('assets/audio/dieRoad.mp3');
-let dieWater = await loadSound('assets/audio/dieWater.mp3');
-let raceCar = await loadSound('assets/audio/raceCar.mp3');
-let topPoop = await loadSound('assets/audio/topPoop.mp3');
+let dieRoad = await loadSound('assets/audio/dieRoad.flac');
+let dieWater = await loadSound('assets/audio/dieWater.flac');
+let raceCar = await loadSound('assets/audio/raceCar.flac');
+let topPoop = await loadSound('assets/audio/topPoop.flac');
 
 let gameState = startScreen;
 
@@ -165,9 +165,19 @@ function runGame() {
         if (croc.x > halfWidth + 48) croc.x = -halfWidth - 48;
     });
 
-    if (goose.overlaps(cars)) gameState = splat;
+    if (goose.overlaps(cars)) {
+        levelMusic[currentLevel].pause();
+            dieRoad.play();
 
-    if (goose.overlaps(crocs)) gameState = splat;
+        gameState = splat;
+    }
+
+    if (goose.overlaps(crocs)) {
+        levelMusic[currentLevel].pause();
+            dieRoad.play();
+
+        gameState = splat;
+    }
 
     if (goose.y > halfHeight - 32 && poopFlag == true) {
         levelMusic[currentLevel].pause();
@@ -176,7 +186,6 @@ function runGame() {
 }
 
 function splat() {
-    currentMusic.pause();
     clear();
     background(bg);
     cars.deleteAll();
@@ -187,6 +196,7 @@ function splat() {
     goose.ani.noLoop();
     goose.ani.frameDelay = 15;
     currentLevel = -1;
+
     if (kb.presses(' ')) {
         gameState = initGoose;
     }
