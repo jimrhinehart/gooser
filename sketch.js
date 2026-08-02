@@ -7,6 +7,8 @@ let bg = await loadImage('assets/background.png');
 let poop = await loadImage('assets/poop.png');
 const levels = await loadJSON('levels.json');
 
+const totalLevels = levels.level.length;
+
 let musicStartScreen = await loadAudio('assets/audio/gameStart.flac');
 let musicLevelCleared = await loadAudio('assets/audio/levelComplete.flac');
 let splatMusic = await loadAudio('assets/audio/splat.flac');
@@ -30,9 +32,9 @@ let cars = new Group();
 cars.scale = 2;
 cars.physics = 'kinematic';
 
-let crocs = new Group();
-crocs.physics = 'kinematic';
-crocs.scale = 2;
+let critters = new Group();
+critters.physics = 'kinematic';
+critters.scale = 2;
 
 let poops = new Group();
 poops.scale = 2;
@@ -60,7 +62,7 @@ let isSwimming = false;
 
 goose.visible = false;
 
-let currentLevel = 0;
+let currentLevel = 1;
 
 q5.draw = function () {
     gameState();
@@ -87,10 +89,10 @@ function initGame() {
         Critter group - water things
 */
 
-    levels.level[currentLevel].crocs.forEach(addFloaty);
+    levels.level[currentLevel].critters.forEach(addFloaty);
 
     function addFloaty(floaty) {
-        let temp = new crocs.Sprite(floaty.x, (floaty.y * 32) - halfHeight, 98, 32);
+        let temp = new critters.Sprite(floaty.x, (floaty.y * 32) - halfHeight, 98, 32);
         temp.addAni(floaty.image, 2);
         temp.setSpeedAndDirection(floaty.speed, floaty.direction);
         temp.ani.frameDelay = floaty.frameDelay;
@@ -163,21 +165,19 @@ function runGame() {
         if (car.x > halfWidth + 32) car.x = halfWidth - 32;
     });
 
-    crocs.forEach((croc) => {
-        if (croc.x < -halfWidth - 48) croc.x = halfWidth + 48;
-        if (croc.x > halfWidth + 48) croc.x = -halfWidth - 48;
+    critters.forEach((critter) => {
+        if (critter.x < -halfWidth - 48) critter.x = halfWidth + 48;
+        if (critter.x > halfWidth + 48) critter.x = -halfWidth - 48;
     });
 
     if (goose.overlaps(cars)) {
         levelMusic[currentLevel].pause();
-        // dieRoad.play();
         splatMusic.play();
         gameState = splat;
     }
 
-    if (goose.overlaps(crocs)) {
+    if (goose.overlaps(critters)) {
         levelMusic[currentLevel].pause();
-        // dieWater.play();
         splatMusic.play();
         gameState = splat;
     }
@@ -192,7 +192,7 @@ function splat() {
     clear();
     background(bg);
     cars.deleteAll();
-    crocs.deleteAll();
+    critters.deleteAll();
     poops.deleteAll();
     goose.speed = 0;
     goose.changeAni('death');
@@ -234,14 +234,13 @@ function levelCleared() {
     textSize(64);
     text('Level cleared!', 0, -100);
     cars.deleteAll();
-    crocs.deleteAll();
+    critters.deleteAll();
     poops.deleteAll();
     poopPlayed = false;
     if (isPlaying == false) {
         musicLevelCleared.play();
         isPlaying = true;
     }
-    // console.log(musicLevelCleared.ended);
     if (musicLevelCleared.ended) gameState = initGoose;
 }    
 
@@ -260,7 +259,8 @@ function initGoose() {
     isPlaying = false;
     poopFlag = false;
     currentLevel++;
-    goose.ani.frame = 0;
+    if (currentLevel == totalLevels) currentLevel = 0;
+    // goose.ani.frame = 0;
 
     gameState = initGame;
 }
@@ -273,7 +273,7 @@ function endGame() {
     textSize(64);
     text('Bye!', 0, -100);
     cars.deleteAll();
-    crocs.deleteAll();
+    critters.deleteAll();
     poops.deleteAll();
     // goose.remove;
 }
