@@ -13,8 +13,6 @@ let musicStartScreen = await loadAudio('assets/audio/gameStart.flac');
 let musicLevelCleared = await loadAudio('assets/audio/levelComplete.flac');
 let splatMusic = await loadAudio('assets/audio/splat.flac');
 let levelMusic = [];
-let isPlaying = false;
-let poopPlayed = false;
 
 levelMusic[0] = await loadAudio('assets/audio/level1.flac');
 levelMusic[1] = await loadAudio('assets/audio/level2.flac');
@@ -39,7 +37,6 @@ critters.scale = 2;
 let poops = new Group();
 poops.scale = 2;
 poops.physics = 'static';
-let poopFlag = false;
 
 let goose;
 let startX = 0;
@@ -47,7 +44,6 @@ let startY = halfHeight - 30;
 goose = new Sprite(startX, startY, 64, 64);
 
 let gooseSplat;
-let gooseSplatted = false;
 gooseSplat = new Sprite();
 gooseSplat.width = 64;
 gooseSplat.height = 64;
@@ -69,11 +65,17 @@ goose.addAnis('assets/gooses.png', '64x64', {
     swim_r: {row: 7, frames: 1},
 });
 
-let isSwimming = false;
-
 goose.visible = false;
 
 let currentLevel = 1;
+
+//////////////////////  Flags
+let isSwimming = false;
+let isPlaying = false;
+let poopPlayed = false;
+let poopFlag = false;
+let gooseSplatted = false;
+
 
 q5.draw = function () {
     gameState();
