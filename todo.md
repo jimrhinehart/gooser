@@ -6,3 +6,4 @@
 -  Make some more music.
 -  Add Pac Man
 -  Other characters to add? Mario? Water things?
+-  How to always start music at the beginning?
