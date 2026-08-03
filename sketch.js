@@ -26,7 +26,7 @@ let raceCar = await loadSound('assets/audio/raceCar.flac');
 let topPoop = await loadSound('assets/audio/topPoop.flac');
 let poopSound = await loadSound('assets/audio/poop.flac');
 
-let gameState = startScreen;
+let gameState = preGame;
 
 let cars = new Group();
 cars.scale = 2;
@@ -122,6 +122,11 @@ function runGame() {
     clear();
     background(bg);
 
+    if (currentLevel == 0) {
+        textSize(18);
+        text('Get to the top to poop!', -halfWidth + 100, halfHeight - 30);
+    }; 
+
     levelMusic[currentLevel].play();
 
     goose.speed = 0.75;
@@ -148,6 +153,16 @@ function runGame() {
             }
         }
     } 
+
+    if (goose.y+20 < -halfHeight + 64 && currentLevel == 0) {
+        textSize(18);
+        text('Good job - now poop!', -halfWidth + 130, -halfHeight + 30);
+    }; 
+
+    if (currentLevel == 0 && poopFlag == true) {
+        textSize(18);
+        text('Now get back to the bottom!', -halfWidth + 130, -halfHeight + 60);
+    }; 
 
     if (goose.y < -45 && goose.y > -275) isSwimming = true;
     else isSwimming = false;
@@ -237,7 +252,7 @@ function startScreen() {
     fill('white');
     textAlign(CENTER);
     textSize(64);
-    text('Gooser!', 0, -100);
+    text('Gooser!', 0, -140);
     textSize(48);
     text('Arrow keys to move', 0, -50);
     text('Space bar to poop', 0, 0);
@@ -302,4 +317,14 @@ function endGame() {
     critters.deleteAll();
     poops.deleteAll();
     // goose.remove;
+}
+
+function preGame() {
+    clear();
+    background(bg);
+    fill('white');
+    textAlign(CENTER);
+    textSize(30);
+    text('(click the screen to begin)', 0, 10);
+    if (mouseIsPressed) gameState = startScreen;
 }
