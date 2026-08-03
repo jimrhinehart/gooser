@@ -229,8 +229,15 @@ Ppar([a, b, c]).play;
 Ppar([a]).play;
 )
 
+(
+SynthDef(\poop, {
+	var sig, env;
+	sig = SinOsc.ar(XLine.kr(100, 500, 0.2, doneAction: 2));
 
+	Out.ar(0, sig);
+}).add;
+)
 
-
+a = Synth(\poop);
 
 

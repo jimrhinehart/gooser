@@ -24,6 +24,7 @@ let dieRoad = await loadSound('assets/audio/dieRoad.flac');
 let dieWater = await loadSound('assets/audio/dieWater.flac');
 let raceCar = await loadSound('assets/audio/raceCar.flac');
 let topPoop = await loadSound('assets/audio/topPoop.flac');
+let poopSound = await loadSound('assets/audio/poop.flac');
 
 let gameState = startScreen;
 
@@ -67,8 +68,7 @@ goose.addAnis(gooseSprites, '64x64', {
 });
 
 goose.visible = false;
-
-let currentLevel = -1;
+let currentLevel = 2;
 
 //////////////////////  Flags
 
@@ -136,6 +136,7 @@ function runGame() {
     if (kb.presses('escape')) gameState = endGame;
 
     if (kb.presses(' ')) {
+        poopSound.play();
         let temp = new poops.Sprite(goose.x, goose.y+20);
         temp.img = poop;
         temp.layer = 1;
