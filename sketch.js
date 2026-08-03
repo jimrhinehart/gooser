@@ -46,6 +46,18 @@ let startX = 0;
 let startY = halfHeight - 30;
 goose = new Sprite(startX, startY, 64, 64);
 
+let gooseSplat;
+let gooseSplatted = false;
+gooseSplat = new Sprite();
+gooseSplat.width = 64;
+gooseSplat.height = 64;
+gooseSplat.addAni('assets/splat2.png', 8);
+gooseSplat.scale = 2;
+gooseSplat.visible = false;
+gooseSplat.physics = 'static';
+gooseSplat.ani.noLoop();
+
+
 goose.addAnis('assets/gooses.png', '64x64', {
     walk_u: {row: 0, frames: 16},
     walk_d: {row: 1, frames: 16},
@@ -55,7 +67,6 @@ goose.addAnis('assets/gooses.png', '64x64', {
     swim_d: {row: 5, frames: 1},
     swim_l: {row: 6, frames: 1},
     swim_r: {row: 7, frames: 1},
-    death:  {row: 8, frames: 8} 
 });
 
 let isSwimming = false;
@@ -80,8 +91,8 @@ function initGame() {
         let temp = new cars.Sprite(vehicle.x, (vehicle.y * 32) - halfHeight, 32, 32);
         temp.img = vehicle.image;
         temp.setSpeedAndDirection(vehicle.speed, vehicle.direction);
-        temp.w = 26;
-        temp.h = 26;
+        temp.w = vehicle.w;
+        temp.h = vehicle.h;
         // temp.visible = false;
     };
 
@@ -96,8 +107,8 @@ function initGame() {
         temp.addAni(floaty.image, 2);
         temp.setSpeedAndDirection(floaty.speed, floaty.direction);
         temp.ani.frameDelay = floaty.frameDelay;
-        temp.w = 94;
-        temp.h = 24;
+        temp.w = floaty.w;
+        temp.h = floaty.h;
     };
 
     gameState = runGame;
@@ -162,7 +173,7 @@ function runGame() {
 
     cars.forEach((car) => {
         if (car.x < -halfWidth - 32) car.x = halfWidth + 32;
-        if (car.x > halfWidth + 32) car.x = halfWidth - 32;
+        if (car.x > halfWidth + 32) car.x = -halfWidth - 32;
     });
 
     critters.forEach((critter) => {
@@ -173,12 +184,14 @@ function runGame() {
     if (goose.overlaps(cars)) {
         levelMusic[currentLevel].pause();
         splatMusic.play();
+        gooseSplatted = true;
         gameState = splat;
     }
 
     if (goose.overlaps(critters)) {
         levelMusic[currentLevel].pause();
         splatMusic.play();
+        gooseSplatted = true;
         gameState = splat;
     }
 
@@ -195,12 +208,21 @@ function splat() {
     critters.deleteAll();
     poops.deleteAll();
     goose.speed = 0;
-    goose.changeAni('death');
-    goose.ani.noLoop();
+    goose.visible = false;
+    gooseSplat.x = goose.x;
+    gooseSplat.y = goose.y;
     goose.ani.frameDelay = 15;
+    gooseSplat.visible = true;
+    if (gooseSplatted == true) {
+        gooseSplat.ani.play();
+        gooseSplatted = false;
+    }
     currentLevel = -1;
 
     if (kb.presses(' ')) {
+        gooseSplat.visible = false;
+        gooseSplat.ani.pause();
+        gooseSplat.ani.frame = 0;
         gameState = initGoose;
     }
 }
@@ -254,7 +276,7 @@ function initGoose() {
     goose.direction = ('right');
     goose.physics = 'kinematic';
     goose.layer = 999;
-
+    goose.visible = true;
     isSwimming = false;
     isPlaying = false;
     poopFlag = false;

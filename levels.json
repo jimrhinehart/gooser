@@ -43,8 +43,8 @@
 					"y": 7,
 					"speed": 0.5,
 					"direction": 0,
-					"width": 94,
-					"height": 24,
+					"w": 94,
+					"h": 24,
 					"frameDelay": 40
 				},
 				{
@@ -53,8 +53,8 @@
 					"y": 4,
 					"speed": 0.5,
 					"direction": 180,
-					"width": 94,
-					"height": 24,
+					"w": 94,
+					"h": 24,
 					"frameDelay": 40
 				}
 			]
@@ -113,8 +113,8 @@
 					"y": 5,
 					"speed": 0.5,
 					"direction": -180,
-					"width": 94,
-					"height": 24,
+					"w": 94,
+					"h": 24,
 					"frameDelay": 40
 				},
 				{
@@ -122,8 +122,8 @@
 					"x": 0,
 					"y": 8,
 					"speed": 0.5,
-					"width": 94,
-					"height": 24,
+					"w": 94,
+					"h": 24,
 					"direction": 0,
 					"frameDelay": 40
 				}			
@@ -165,6 +165,17 @@
 					"physics": "kinematic"		
 				},
 				{
+					"image":"assets/white.png",
+					"x":60,
+					"y":15,
+					"speed":2.0,
+					"direction":0,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"	
+				},				
+				{
 					"image":"assets/yellow.png",
 					"x":60,
 					"y":12,
@@ -194,8 +205,8 @@
 					"y": 4,
 					"speed": 0.5,
 					"direction": 0,
-					"width": 94,
-					"height": 24,
+					"w": 94,
+					"h": 24,
 					"frameDelay": 40
 				},
 				{
@@ -203,19 +214,19 @@
 					"x": 40,
 					"y": 5,
 					"speed": 0.5,
-					"width": 94,
-					"height": 24,
+					"w": 94,
+					"h": 24,
 					"direction": 180,
 					"frameDelay": 40
 				},
 				{
 					"image":"assets/frog_l.png",
 					"x": 40,
-					"y": 6,
+					"y": 8,
 					"speed": 1.0,
 					"direction": 180,
-					"width": 24,
-					"height": 24,
+					"w": 24,
+					"h": 24,
 					"frameDelay": 20
 				}
 			]
