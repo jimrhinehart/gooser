@@ -73,7 +73,7 @@ let isSwimming = false;
 
 goose.visible = false;
 
-let currentLevel = 1;
+let currentLevel = -1;
 
 q5.draw = function () {
     gameState();
