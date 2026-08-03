@@ -3,9 +3,10 @@ await Canvas(480, 640);
 displayMode('maxed');
 await loadFont('assets/LT.ttf');
 
-let bg = await loadImage('assets/background.png');
-let poop = await loadImage('assets/poop.png');
+const bg = await loadImage('assets/background.png');
+const poop = await loadImage('assets/poop.png');
 const levels = await loadJSON('levels.json');
+const gooseSprites = await loadImage('assets/gooses.png');
 
 const totalLevels = levels.level.length;
 
@@ -54,7 +55,7 @@ gooseSplat.physics = 'static';
 gooseSplat.ani.noLoop();
 
 
-goose.addAnis('assets/gooses.png', '64x64', {
+goose.addAnis(gooseSprites, '64x64', {
     walk_u: {row: 0, frames: 16},
     walk_d: {row: 1, frames: 16},
     walk_l: {row: 2, frames: 16},
@@ -70,12 +71,12 @@ goose.visible = false;
 let currentLevel = -1;
 
 //////////////////////  Flags
+
 let isSwimming = false;
 let isPlaying = false;
 let poopPlayed = false;
 let poopFlag = false;
 let gooseSplatted = false;
-
 
 q5.draw = function () {
     gameState();
