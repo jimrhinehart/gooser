@@ -67,7 +67,7 @@ goose.addAnis('assets/gooses.png', '64x64', {
 
 goose.visible = false;
 
-let currentLevel = 1;
+let currentLevel = -1;
 
 //////////////////////  Flags
 let isSwimming = false;
