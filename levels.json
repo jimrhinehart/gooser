@@ -354,12 +354,12 @@
 				{
 					"image":"assets/pacman_r.png",
 					"x": -1000,
-					"y": 9,
+					"y": 9.5,
 					"speed": 1.0,
 					"direction": 0,
 					"w": 24,
 					"h": 24,
-					"frameDelay": 20
+					"frameDelay": 10
 				}				
 			]
 		}
