@@ -25,6 +25,7 @@ let dieWater = await loadSound('assets/audio/dieWater.flac');
 let raceCar = await loadSound('assets/audio/raceCar.flac');
 let topPoop = await loadSound('assets/audio/topPoop.flac');
 let poopSound = await loadSound('assets/audio/poop.flac');
+let splatSound = await loadSound('assets/audio/squish.flac');
 
 let gameState = preGame;
 
@@ -203,6 +204,7 @@ function runGame() {
     if (goose.overlaps(cars)) {
         levelMusic[currentLevel].pause();
         splatMusic.play();
+        splatSound.play();
         gooseSplatted = true;
         gameState = splat;
     }
@@ -210,6 +212,7 @@ function runGame() {
     if (goose.overlaps(critters)) {
         levelMusic[currentLevel].pause();
         splatMusic.play();
+        splatSound.play();
         gooseSplatted = true;
         gameState = splat;
     }
