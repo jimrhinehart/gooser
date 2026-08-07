@@ -359,7 +359,8 @@
 					"direction": 0,
 					"w": 24,
 					"h": 24,
-					"frameDelay": 10
+					"frameDelay": 10,
+					"music": "pacSound"
 				}				
 			]
 		}

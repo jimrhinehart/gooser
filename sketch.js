@@ -10,9 +10,9 @@ const gooseSprites = await loadImage('assets/gooses.png');
 
 const totalLevels = levels.level.length;
 
-let musicStartScreen = await loadAudio('assets/audio/gameStart.flac');
-let musicLevelCleared = await loadAudio('assets/audio/levelComplete.flac');
-let splatMusic = await loadAudio('assets/audio/splat.flac');
+const musicStartScreen = await loadAudio('assets/audio/gameStart.flac');
+const musicLevelCleared = await loadAudio('assets/audio/levelComplete.flac');
+const splatMusic = await loadAudio('assets/audio/splat.flac');
 let levelMusic = [];
 
 levelMusic[0] = await loadAudio('assets/audio/level1.flac');
@@ -20,12 +20,13 @@ levelMusic[1] = await loadAudio('assets/audio/level2.flac');
 levelMusic[2] = await loadAudio('assets/audio/level3.flac');
 levelMusic[3] = await loadAudio('assets/audio/level4.flac');
 
-let dieRoad = await loadSound('assets/audio/dieRoad.flac');
-let dieWater = await loadSound('assets/audio/dieWater.flac');
-let raceCar = await loadSound('assets/audio/raceCar.flac');
-let topPoop = await loadSound('assets/audio/topPoop.flac');
-let poopSound = await loadSound('assets/audio/poop.flac');
-let splatSound = await loadSound('assets/audio/squish.flac');
+const dieRoad = await loadSound('assets/audio/dieRoad.flac');
+const dieWater = await loadSound('assets/audio/dieWater.flac');
+const raceCar = await loadSound('assets/audio/raceCar.flac');
+const topPoop = await loadSound('assets/audio/topPoop.flac');
+const poopSound = await loadSound('assets/audio/poop.flac');
+const splatSound = await loadSound('assets/audio/squish.flac');
+const pacSound = await loadSound('assets/audio/pacSound.flac');
 
 let gameState = preGame;
 
@@ -69,7 +70,7 @@ goose.addAnis(gooseSprites, '64x64', {
 });
 
 goose.visible = false;
-let currentLevel = -1;
+let currentLevel = 2;
 
 //////////////////////  Flags
 
@@ -97,7 +98,6 @@ function initGame() {
         temp.setSpeedAndDirection(vehicle.speed, vehicle.direction);
         temp.w = vehicle.w;
         temp.h = vehicle.h;
-        // temp.visible = false;
     };
 
 /*
