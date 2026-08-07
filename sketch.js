@@ -70,7 +70,7 @@ goose.addAnis(gooseSprites, '64x64', {
 });
 
 goose.visible = false;
-let currentLevel = 2;
+let currentLevel = -1;
 
 //////////////////////  Flags
 
