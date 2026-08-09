@@ -304,7 +304,6 @@ function initGoose() {
     poopFlag = false;
     currentLevel++;
     if (currentLevel == totalLevels) currentLevel = 0;
-    // goose.ani.frame = 0;
 
     gameState = initGame;
 }
