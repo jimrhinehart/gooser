@@ -19,6 +19,8 @@ levelMusic[0] = await loadAudio('assets/audio/level1.flac');
 levelMusic[1] = await loadAudio('assets/audio/level2.flac');
 levelMusic[2] = await loadAudio('assets/audio/level3.flac');
 levelMusic[3] = await loadAudio('assets/audio/level4.flac');
+levelMusic[4] = await loadAudio('assets/audio/level5.flac');
+
 
 const dieRoad = await loadSound('assets/audio/dieRoad.flac');
 const dieWater = await loadSound('assets/audio/dieWater.flac');
@@ -45,7 +47,7 @@ poops.physics = 'static';
 let goose;
 let startX = 0;
 let startY = halfHeight - 30;
-goose = new Sprite(startX, startY, 64, 64);
+goose = new Sprite(startX, startY, 40, 40);
 
 let gooseSplat;
 gooseSplat = new Sprite();
