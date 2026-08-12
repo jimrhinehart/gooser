@@ -21,7 +21,8 @@ levelMusic[1] = await loadAudio('assets/audio/level2.flac');
 levelMusic[2] = await loadAudio('assets/audio/level3.flac');
 levelMusic[3] = await loadAudio('assets/audio/level4.flac');
 levelMusic[4] = await loadAudio('assets/audio/level5.flac');
-levelMusic[5] = await loadAudio('assets/audio/level5.flac');
+levelMusic[5] = await loadAudio('assets/audio/level6.flac');
+levelMusic[6] = await loadAudio('assets/audio/level7.flac');
 
 
 const dieRoad = await loadSound('assets/audio/dieRoad.flac');
@@ -74,7 +75,7 @@ goose.addAnis(gooseSprites, '64x64', {
 });
 
 goose.visible = false;
-let currentLevel = 4;
+let currentLevel = -1;
 
 //////////////////////  Flags
 
