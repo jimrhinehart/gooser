@@ -487,6 +487,128 @@
 					"music": "pacSound"
 				}				
 			]
+		},
+		{
+	    	"cars": [
+				{
+					"image":"assets/purple.png",
+					"x":0,
+					"y":12,
+					"speed":1.5,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"
+				},
+				{
+					"image":"assets/purple.png",
+					"x":40,
+					"y":12,
+					"speed":1.5,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"		
+				},
+								{
+					"image":"assets/purple.png",
+					"x":80,
+					"y":17,
+					"speed":1.75,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"		
+				},
+				{
+					"image":"assets/white.png",
+					"x":60,
+					"y":15,
+					"speed":2.0,
+					"direction":0,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"	
+				},				
+				{
+					"image":"assets/yellow.png",
+					"x":140,
+					"y":13,
+					"speed":2.0,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"	
+				},
+				{
+					"image":"assets/yellow.png",
+					"x":220,
+					"y":13,
+					"speed":2.0,
+					"direction":180,
+					"w": 16,
+		 			"h": 16,
+					"scale": 2,
+					"physics": "kinematic"	
+				}
+			],	
+			"critters": [
+				{
+					"image":"assets/croc_r.png",
+					"x": -40,
+					"y": 4,
+					"speed": 0.5,
+					"direction": 0,
+					"w": 94,
+					"h": 24,
+					"frameDelay": 40
+				},
+				{
+					"image":"assets/croc_l.png",
+					"x": 40,
+					"y": 6,
+					"speed": 0.5,
+					"w": 94,
+					"h": 24,
+					"direction": 180,
+					"frameDelay": 40
+				},
+				{
+					"image":"assets/frog_r.png",
+					"x": 40,
+					"y": 8,
+					"speed": 1.25,
+					"direction": 0,
+					"w": 24,
+					"h": 24,
+					"frameDelay": 20
+				},
+				{
+					"image":"assets/barrels.png",
+					"x": 260,
+					"y": 9.5,
+					"speed": 1.25,
+					"direction": 180,
+					"w": 24,
+					"h": 24,
+					"frameDelay": 10
+				},
+				{
+					"image":"assets/barrels.png",
+					"x": 300,
+					"y": 9.5,
+					"speed": 1.25,
+					"direction": 180,
+					"w": 24,
+					"h": 24,
+					"frameDelay": 10
+				}
+			]
 		}
 	]	
 }

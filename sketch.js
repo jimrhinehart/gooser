@@ -7,6 +7,7 @@ const bg = await loadImage('assets/background.png');
 const poop = await loadImage('assets/poop.png');
 const levels = await loadJSON('levels.json');
 const gooseSprites = await loadImage('assets/gooses.png');
+const barrel = await loadImage('assets/barrels.png');
 
 const totalLevels = levels.level.length;
 
@@ -20,6 +21,7 @@ levelMusic[1] = await loadAudio('assets/audio/level2.flac');
 levelMusic[2] = await loadAudio('assets/audio/level3.flac');
 levelMusic[3] = await loadAudio('assets/audio/level4.flac');
 levelMusic[4] = await loadAudio('assets/audio/level5.flac');
+levelMusic[5] = await loadAudio('assets/audio/level5.flac');
 
 
 const dieRoad = await loadSound('assets/audio/dieRoad.flac');
@@ -72,7 +74,7 @@ goose.addAnis(gooseSprites, '64x64', {
 });
 
 goose.visible = false;
-let currentLevel = -1;
+let currentLevel = 4;
 
 //////////////////////  Flags
 
@@ -110,7 +112,14 @@ function initGame() {
 
     function addFloaty(floaty) {
         let temp = new critters.Sprite(floaty.x, (floaty.y * 32) - halfHeight, 98, 32);
-        temp.addAni(floaty.image, 2);
+        if (floaty.image == "assets/barrels.png") {
+            console.log("Barrel!");
+            temp.addAni(barrel, 4);
+        }
+        else {
+            temp.addAni(floaty.image, 2);
+        }
+        // temp.addAni(floaty.image, 2);
         temp.setSpeedAndDirection(floaty.speed, floaty.direction);
         temp.ani.frameDelay = floaty.frameDelay;
         temp.w = floaty.w;
