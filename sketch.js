@@ -51,9 +51,7 @@ poops.scale = 2;
 poops.physics = 'static';
 
 let goose;
-let startX = 0;
-let startY = halfHeight - 30;
-goose = new Sprite(startX, startY, 40, 40);
+
 
 let gooseSplat;
 gooseSplat = new Sprite();
@@ -66,18 +64,8 @@ gooseSplat.physics = 'static';
 gooseSplat.ani.noLoop();
 
 
-goose.addAnis(gooseSprites, '64x64', {
-    walk_u: {row: 0, frames: 16},
-    walk_d: {row: 1, frames: 16},
-    walk_l: {row: 2, frames: 16},
-    walk_r: {row: 3, frames: 16},
-    swim_u: {row: 4, frames: 1},
-    swim_d: {row: 5, frames: 1},
-    swim_l: {row: 6, frames: 1},
-    swim_r: {row: 7, frames: 1},
-});
 
-goose.visible = false;
+
 
 //////////////////////  Flags
 
@@ -290,7 +278,9 @@ function levelCleared() {
     fill('white');
     textAlign(CENTER);
     textSize(64);
-    text('Level cleared!', 0, -100);
+    text('Level', 0, -100);
+    text(currentLevel+1, 0, -40);
+    text('cleared!', 0, 20);
     cars.deleteAll();
     critters.deleteAll();
     poops.deleteAll();
@@ -303,6 +293,23 @@ function levelCleared() {
 }    
 
 function initGoose() {
+
+    let startX = 0;
+    let startY = halfHeight - 30;
+    goose = new Sprite(startX, startY, 40, 40);
+    // goose.visible = false;
+
+    goose.addAnis(gooseSprites, '64x64', {
+        walk_u: {row: 0, frames: 16},
+        walk_d: {row: 1, frames: 16},
+        walk_l: {row: 2, frames: 16},
+        walk_r: {row: 3, frames: 16},
+        swim_u: {row: 4, frames: 1},
+        swim_d: {row: 5, frames: 1},
+        swim_l: {row: 6, frames: 1},
+        swim_r: {row: 7, frames: 1},
+    });
+
     goose.w = 20;
     goose.h = 28;
     goose.x = startX;
