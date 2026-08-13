@@ -35,6 +35,9 @@ const pacSound = await loadSound('assets/audio/pacSound.flac');
 
 let gameState = preGame;
 
+let currentLevel = -1;
+let speedScale = 1;
+
 let cars = new Group();
 cars.scale = 2;
 cars.physics = 'kinematic';
@@ -75,7 +78,6 @@ goose.addAnis(gooseSprites, '64x64', {
 });
 
 goose.visible = false;
-let currentLevel = -1;
 
 //////////////////////  Flags
 
@@ -100,7 +102,7 @@ function initGame() {
     function addVehicles(vehicle) {
         let temp = new cars.Sprite(vehicle.x, (vehicle.y * 32) - halfHeight, 32, 32);
         temp.img = vehicle.image;
-        temp.setSpeedAndDirection(vehicle.speed, vehicle.direction);
+        temp.setSpeedAndDirection(vehicle.speed * speedScale, vehicle.direction);
         temp.w = vehicle.w;
         temp.h = vehicle.h;
     };
@@ -121,7 +123,7 @@ function initGame() {
             temp.addAni(floaty.image, 2);
         }
         // temp.addAni(floaty.image, 2);
-        temp.setSpeedAndDirection(floaty.speed, floaty.direction);
+        temp.setSpeedAndDirection(floaty.speed * speedScale, floaty.direction);
         temp.ani.frameDelay = floaty.frameDelay;
         temp.w = floaty.w;
         temp.h = floaty.h;
@@ -315,8 +317,10 @@ function initGoose() {
     isPlaying = false;
     poopFlag = false;
     currentLevel++;
-    if (currentLevel == totalLevels) currentLevel = 0;
-
+    if (currentLevel == totalLevels) {
+        currentLevel = 0;
+        speedScale += 0.25;
+    }
     gameState = initGame;
 }
 
