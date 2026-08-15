@@ -35,7 +35,7 @@ const pacSound = await loadSound('assets/audio/pacSound.flac');
 
 let gameState = preGame;
 
-let currentLevel = 5;
+let currentLevel = -1;
 let speedScale = 1;
 
 let cars = new Group();
