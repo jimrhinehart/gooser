@@ -37,6 +37,7 @@ let gameState = preGame;
 
 let currentLevel = -1;
 let speedScale = 1;
+allSprites.debug = true;
 
 let cars = new Group();
 cars.scale = 2;
@@ -55,8 +56,8 @@ let goose;
 
 let gooseSplat;
 gooseSplat = new Sprite();
-gooseSplat.width = 64;
-gooseSplat.height = 64;
+gooseSplat.width = 32;
+gooseSplat.height = 32;
 gooseSplat.addAni('assets/splat2.png', 8);
 gooseSplat.scale = 2;
 gooseSplat.visible = false;
@@ -127,6 +128,7 @@ function runGame() {
 
     if (currentLevel == 0) {
         textSize(18);
+        fill('white');
         text('Get to the top to poop!', -halfWidth + 100, halfHeight - 30);
     }; 
 
@@ -147,6 +149,8 @@ function runGame() {
         poopSound.play();
         let temp = new poops.Sprite(goose.x, goose.y+20);
         temp.img = poop;
+        temp.w = 10;
+        temp.h = 10;
         temp.layer = 1;
         if (goose.y+20 < -halfHeight + 64) {
             poopFlag = true;
@@ -159,11 +163,13 @@ function runGame() {
 
     if (goose.y+20 < -halfHeight + 64 && currentLevel == 0) {
         textSize(18);
+        fill('white');
         text('Good job - now poop!', -halfWidth + 130, -halfHeight + 30);
     }; 
 
     if (currentLevel == 0 && poopFlag == true) {
         textSize(18);
+        fill('white');
         text('Now get back to the bottom!', -halfWidth + 130, -halfHeight + 60);
     }; 
 
@@ -310,7 +316,7 @@ function initGoose() {
         swim_r: {row: 7, frames: 1},
     });
 
-    goose.w = 20;
+    goose.w = 15;
     goose.h = 28;
     goose.x = startX;
     goose.y = startY;
