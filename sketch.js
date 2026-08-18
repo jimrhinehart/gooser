@@ -1,3 +1,14 @@
+//  Gooser!
+//
+//  Frogger . . . but with a goose. Because why not?
+//
+//  By Jim Rhinehart (jr88keys)
+//  jimrhinehart [at] gmail <dot> com
+//
+//  Uses q5play for graphics
+//  Uses SuperCollider for sounds
+
+
 
 await Canvas(480, 640);
 displayMode('maxed');
@@ -37,7 +48,7 @@ let gameState = preGame;
 
 let currentLevel = -1;
 let speedScale = 1;
-allSprites.debug = true;
+// allSprites.debug = true;
 
 let cars = new Group();
 cars.scale = 2;
