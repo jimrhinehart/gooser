@@ -140,7 +140,7 @@ function runGame() {
     if (currentLevel == 0) {
         textSize(18);
         fill('white');
-        text('Get to the top to poop!', -halfWidth + 100, halfHeight - 30);
+        text('Get to the top and poop!', -halfWidth + 100, halfHeight - 30);
     }; 
 
     levelMusic[currentLevel].play();
@@ -297,7 +297,7 @@ function levelCleared() {
     textSize(64);
     text('Level', 0, -100);
     text(currentLevel+1, 0, -40);
-    text('cleared!', 0, 20);
+    text('Cleared!', 0, 20);
     cars.deleteAll();
     critters.deleteAll();
     poops.deleteAll();
